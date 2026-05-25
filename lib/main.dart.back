@@ -1,0 +1,778 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MiApp());
+}
+
+class MiApp extends StatelessWidget {
+  const MiApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: (),
+    );
+  }
+}
+
+class InicioEducativo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("No Aprendes Fácil"),
+        backgroundColor: const Color.fromARGB(255, 248, 19, 19),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.school,
+            size: 100,
+            color: Color.fromARGB(255, 0, 135, 47),
+          ),
+
+          const SizedBox(height: 20),
+
+          const Text(
+            "No eres Bienvenido",
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+
+          const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text(
+              "Aprende programación lo demas es lujo.",
+              textAlign: TextAlign.center,
+            ),
+          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              tarjeta(
+                Icons.code,
+                "Programación que mas quieres",
+                const Color.fromARGB(255, 218, 144, 33),
+              ),
+              tarjeta(
+                Icons.calculate,
+                "Matemáticas",
+                const Color.fromARGB(255, 123, 150, 124),
+              ),
+              tarjeta(
+                Icons.brush,
+                "Diseño",
+                const Color.fromARGB(255, 31, 121, 210),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget tarjeta(IconData icono, String titulo, Color color) {
+    return Card(
+      color: color,
+      child: Container(
+        width: 100,
+        height: 120,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icono, size: 40, color: Colors.white),
+            SizedBox(height: 10),
+            Text(titulo, style: TextStyle(color: Colors.white)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Agenda2 extends StatelessWidget {
+  final List<Map<String, dynamic>> actividades = [
+    {
+      "hora": "7:00 a.m.",
+      "titulo": "Llegada al ambiente",
+      "descripcion": "Ingreso al salón",
+      "icono": Icons.login,
+    },
+    {
+      "hora": "8:00 a.m.",
+      "titulo": "Explicación del tema",
+      "descripcion": "Clase principal",
+      "icono": Icons.menu_book,
+    },
+    {
+      "hora": "10:00 a.m.",
+      "titulo": "Trabajo práctico",
+      "descripcion": "Actividad en grupo",
+      "icono": Icons.computer,
+    },
+    {
+      "hora": "12:00 p.m.",
+      "titulo": "Almuerzo",
+      "descripcion": "Tiempo de descanso",
+      "icono": Icons.restaurant,
+    },
+    {
+      "hora": "2:00 p.m.",
+      "titulo": "Socialización",
+      "descripcion": "Presentación de ideas",
+      "icono": Icons.people,
+    },
+    {
+      "hora": "4:00 p.m.",
+      "titulo": "Entrega de evidencia",
+      "descripcion": "Subir actividad",
+      "icono": Icons.upload_file,
+    },
+    {
+      "hora": "5:00 p.m.",
+      "titulo": "Salida",
+      "descripcion": "Fin de jornada",
+      "icono": Icons.exit_to_app,
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Agenda del Día")),
+      body: SingleChildScrollView(
+        child: Column(
+          children: actividades.map((actividad) {
+            return Card(
+              margin: EdgeInsets.all(10),
+              child: ListTile(
+                leading: Icon(actividad["icono"]),
+                title: Text("${actividad["hora"]} - ${actividad["titulo"]}"),
+                subtitle: Text(actividad["descripcion"]),
+              ),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class NormaAmbiente extends StatelessWidget {
+  final List<Map<String, dynamic>> normas = [
+    {
+      "icono": Icons.access_time,
+      "titulo": "Llegar puntualmente",
+      "descripcion": "Respeta los horarios establecidos para las actividades.",
+    },
+    {
+      "icono": Icons.people,
+      "titulo": "Respetar la palabra de los compañeros",
+      "descripcion": "Escucha atentamente sin interrupciones.",
+    },
+    {
+      "icono": Icons.devices,
+      "titulo": "Cuidar los equipos",
+      "descripcion": "Utiliza responsablemente los equipos y herramientas.",
+    },
+    {
+      "icono": Icons.cleaning_services,
+      "titulo": "Mantener limpio el ambiente",
+      "descripcion": "Deja el espacio ordenado después de cada actividad.",
+    },
+    {
+      "icono": Icons.thumb_up,
+      "titulo": "Participar en clase",
+      "descripcion": "Contribuye activamente en las discusiones y actividades.",
+    },
+    {
+      "icono": Icons.assignment_turned_in,
+      "titulo": "Entregar las evidencias a tiempo",
+      "descripcion": "Cumple con los plazos establecidos para envíos.",
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Normas del Ambiente"),
+        backgroundColor: const Color.fromARGB(255, 31, 121, 210),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Título Principal
+            Container(
+              padding: const EdgeInsets.all(20),
+              color: const Color.fromARGB(255, 31, 121, 210),
+              width: double.infinity,
+              child: const Text(
+                "Normas del Ambiente",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+
+            // Introducción
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: const Text(
+                "Estas normas aseguran un ambiente de formación seguro, respetuoso y productivo para todos.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ),
+
+            // Tarjetas de Normas
+            ...normas.map((norma) {
+              return Card(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: ListTile(
+                  leading: Icon(
+                    norma["icono"],
+                    color: const Color.fromARGB(255, 31, 121, 210),
+                    size: 32,
+                  ),
+                  title: Text(
+                    norma["titulo"],
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(norma["descripcion"]),
+                ),
+              );
+            }).toList(),
+
+            // Sección Compromiso del Aprendiz
+            Container(
+              margin: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 31, 121, 210),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Column(
+                children: [
+                  Text(
+                    "Compromiso del Aprendiz",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    "Me comprometo a cumplir estas normas y a colaborar en la construcción de un ambiente de formación positivo y respetuoso.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ResumenCompra extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Resumen de Compra"),
+        backgroundColor: const Color.fromARGB(255, 0, 135, 47),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Nombre de la Tienda
+            Container(
+              padding: const EdgeInsets.all(20),
+              color: const Color.fromARGB(255, 0, 135, 47),
+              width: double.infinity,
+              child: const Text(
+                "Shopping Online Store",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Productos
+            Card(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  _productoItem("Camiseta", "\$45.000"),
+                  const Divider(height: 1),
+                  _productoItem("Gorra", "\$30.000"),
+                  const Divider(height: 1),
+                  _productoItem("Zapatos", "\$120.000"),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Totales
+            Card(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  _totalItem("Subtotal", "\$195.000"),
+                  const Divider(height: 1),
+                  _totalItem("Envío", "\$15.000"),
+                  const Divider(height: 1),
+                  _totalItem("Total", "\$210.000", isTotal: true),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Tarjeta Final
+            Card(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              color: const Color.fromARGB(255, 0, 135, 47),
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    const Icon(
+                      Icons.check_circle,
+                      color: Colors.white,
+                      size: 48,
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      "Compra lista para confirmar",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _productoItem(String nombre, String precio) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(nombre, style: const TextStyle(fontSize: 16)),
+          Text(
+            precio,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _totalItem(String label, String valor, {bool isTotal = false}) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: isTotal ? 18 : 14,
+              fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+          Text(
+            valor,
+            style: TextStyle(
+              fontSize: isTotal ? 18 : 14,
+              fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
+              color: isTotal
+                  ? const Color.fromARGB(255, 0, 135, 47)
+                  : Colors.black,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SeguridadDigital extends StatelessWidget {
+  final List<Map<String, dynamic>> recomendaciones = [
+    {
+      "icono": Icons.lock_outline,
+      "titulo": "Usar contraseñas seguras",
+      "descripcion":
+          "Crea contraseñas con letras, números y caracteres especiales.",
+    },
+    {
+      "icono": Icons.no_encryption,
+      "titulo": "No compartir claves",
+      "descripcion": "Nunca compartas tu contraseña con otras personas.",
+    },
+    {
+      "icono": Icons.logout,
+      "titulo": "Cerrar sesión en equipos públicos",
+      "descripcion": "Siempre cierra sesión antes de abandonar el equipo.",
+    },
+    {
+      "icono": Icons.link_off,
+      "titulo": "Verificar enlaces sospechosos",
+      "descripcion": "No hagas clic en enlaces desconocidos o sospechosos.",
+    },
+    {
+      "icono": Icons.verified_user,
+      "titulo": "Activar verificación en dos pasos",
+      "descripcion": "Habilita autenticación de dos factores en tus cuentas.",
+    },
+    {
+      "icono": Icons.download_for_offline,
+      "titulo": "No descargar archivos desconocidos",
+      "descripcion": "Evita descargar archivos de fuentes no confiables.",
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Seguridad Digital"),
+        backgroundColor: const Color.fromARGB(255, 218, 144, 33),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Título e Ícono
+            Container(
+              padding: const EdgeInsets.all(20),
+              color: const Color.fromARGB(255, 218, 144, 33),
+              width: double.infinity,
+              child: Column(
+                children: [
+                  const Icon(Icons.security, size: 64, color: Colors.white),
+                  const SizedBox(height: 12),
+                  const Text(
+                    "Recomendaciones de Seguridad Digital",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Introducción
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: const Text(
+                "Protege tu información personal en internet siguiendo estas recomendaciones de seguridad.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14, color: Colors.grey),
+              ),
+            ),
+
+            // Tarjetas de Recomendaciones
+            ...recomendaciones.map((rec) {
+              return Card(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        rec["icono"],
+                        color: const Color.fromARGB(255, 218, 144, 33),
+                        size: 40,
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              rec["titulo"],
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              rec["descripcion"],
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }).toList(),
+
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RankingParticipantes extends StatelessWidget {
+  final List<Map<String, dynamic>> participantes = [
+    {
+      "posicion": 1,
+      "nombre": "Laura",
+      "puntaje": 95,
+      "medalla": Icons.emoji_events,
+      "mensaje": "Excelente participación",
+    },
+    {
+      "posicion": 2,
+      "nombre": "Camilo",
+      "puntaje": 90,
+      "medalla": Icons.star,
+      "mensaje": "Muy buen trabajo",
+    },
+    {
+      "posicion": 3,
+      "nombre": "Sofía",
+      "puntaje": 86,
+      "medalla": Icons.star,
+      "mensaje": "Buen desempeño",
+    },
+    {
+      "posicion": 4,
+      "nombre": "Juan",
+      "puntaje": 82,
+      "medalla": Icons.star_half,
+      "mensaje": "Participación activa",
+    },
+    {
+      "posicion": 5,
+      "nombre": "María",
+      "puntaje": 78,
+      "medalla": Icons.trending_up,
+      "mensaje": "Buen esfuerzo",
+    },
+    {
+      "posicion": 6,
+      "nombre": "Pedro",
+      "puntaje": 75,
+      "medalla": Icons.trending_up,
+      "mensaje": "Trabajo constante",
+    },
+    {
+      "posicion": 7,
+      "nombre": "Ana",
+      "puntaje": 72,
+      "medalla": Icons.assignment_turned_in,
+      "mensaje": "Cumple objetivos",
+    },
+    {
+      "posicion": 8,
+      "nombre": "Carlos",
+      "puntaje": 68,
+      "medalla": Icons.assignment_turned_in,
+      "mensaje": "Sigue mejorando",
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Ranking de Participantes"),
+        backgroundColor: const Color.fromARGB(255, 123, 150, 124),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Encabezado
+            Container(
+              padding: const EdgeInsets.all(20),
+              color: const Color.fromARGB(255, 123, 150, 124),
+              width: double.infinity,
+              child: const Column(
+                children: [
+                  Icon(Icons.leaderboard, size: 48, color: Colors.white),
+                  SizedBox(height: 12),
+                  Text(
+                    "Ranking de Actividad Académica",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            // Lista de Participantes
+            ...participantes.asMap().entries.map((entry) {
+              int index = entry.key;
+              Map<String, dynamic> participante = entry.value;
+
+              // Colores especiales para los primeros 3
+              Color? backgroundColor;
+              if (index == 0) backgroundColor = Colors.amber.withOpacity(0.2);
+              if (index == 1) backgroundColor = Colors.grey[300];
+              if (index == 2) backgroundColor = Colors.orange.withOpacity(0.2);
+
+              return Card(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                color: backgroundColor,
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    children: [
+                      // Posición y Medalla
+                      Stack(
+                        children: [
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 123, 150, 124),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "#${participante["posicion"]}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: -5,
+                            right: -5,
+                            child: Icon(
+                              participante["medalla"],
+                              color: participante["posicion"] <= 3
+                                  ? Colors.amber
+                                  : const Color.fromARGB(255, 123, 150, 124),
+                              size: 32,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(width: 16),
+
+                      // Nombre y Mensaje
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              participante["nombre"],
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              participante["mensaje"],
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // Puntaje
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "${participante["puntaje"]}",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Color.fromARGB(255, 123, 150, 124),
+                            ),
+                          ),
+                          const Text(
+                            "puntos",
+                            style: TextStyle(fontSize: 10, color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }).toList(),
+
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
